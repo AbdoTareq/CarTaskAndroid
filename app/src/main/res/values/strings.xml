@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CarTaskAndroid</string>
+    <string name="forbidden_mess">forbidden</string>
+    <string name="server_offline_try">server offline try again later</string>
+    <string name="cars">Cars</string>
 </resources>
