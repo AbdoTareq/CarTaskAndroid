@@ -19,7 +19,7 @@ enum class ApiStatus { LOADING, ERROR, DONE, EMPTY }
  */
 class CarViewModel(application: Application) : AndroidViewModel(application) {
 
-    private  val pageNum = 21
+    private  val pageNum = 1
 
     private val repo = CarRepository()
     private val applicationCon = application

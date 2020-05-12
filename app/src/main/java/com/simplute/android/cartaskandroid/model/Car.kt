@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 
 data class Car(
-    @SerializedName("id") val id: Int,
+    @SerializedName("id") val id: Int = 0,
     @SerializedName("brand") val brand: String? = null,
     @SerializedName("constructionYear") val constructionYear: String? = null,
 
     @SerializedName("imageUrl") val imageUrl: String? = null,
     @SerializedName("isUsed") val isUsed: Boolean
 
-    )
+)

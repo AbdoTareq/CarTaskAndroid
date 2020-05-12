@@ -23,7 +23,7 @@ class CarRepository {
             try {
                 val carList = CarApiObj.retrofitService.getCarList(id).data
                 Timber.e("$carList")
-                carInterface.onSuccess(carList)
+                carInterface.onSuccess(carList!!)
             } catch (e: HttpException) {
                 Timber.e("${e.code()}")
                 carInterface.onFail("${e.code()}")

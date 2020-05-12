@@ -63,6 +63,7 @@ dependencies {
     // we use converter-gson instead of moshi as mosh needs adapter for objects list that have date
     // property to work
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 
     // Glide for image loading from urls
     implementation "com.github.bumptech.glide:glide:4.11.0"
@@ -78,6 +79,8 @@ dependencies {
 
     // Material design components
     implementation "com.google.android.material:material:1.1.0"
+
+
 
 
 }
