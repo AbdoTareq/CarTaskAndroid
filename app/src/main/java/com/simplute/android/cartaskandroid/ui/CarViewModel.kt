@@ -48,7 +48,6 @@ class CarViewModel(application: Application) : AndroidViewModel(application) {
             override fun onFail(responseCode: String) {
                 _status.value = ApiStatus.ERROR
                 _cars.value = ArrayList()
-                Log.e("error", getErrorMess(responseCode))
                 Timber.e(getErrorMess(responseCode))
             }
 

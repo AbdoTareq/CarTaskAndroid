@@ -1,7 +1,6 @@
 package com.simplute.android.cartaskandroid
 
 import android.app.Application
-import com.intuit.sdp.BuildConfig
 import timber.log.Timber
 
 
@@ -14,7 +13,8 @@ class ApplicationController : Application() {
         super.onCreate()
 
         // this condition to prevent logs in release
-        if (BuildConfig.DEBUG) {
+        // take care BuildConfig.DEBUG shouldn't import from libraries to work
+        if (com.simplute.android.cartaskandroid.BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }
