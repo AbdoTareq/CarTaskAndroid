@@ -1,26 +1,15 @@
 package com.simplute.android.cartaskandroid.network
 
+import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
+import com.simplute.android.cartaskandroid.BuildConfig
 import com.simplute.android.cartaskandroid.model.Request
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 private const val BASE_URL = "http://demo1286023.mockable.io/api/v1/"
-
-private val httpLoggingInterceptor =
-    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-
-private val okHttpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
-
-
-private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL)
-    .addConverterFactory(GsonConverterFactory.create())
-    .client(okHttpClient)
-    .build()
 
 interface CarApiService {
     @GET("cars")
@@ -32,6 +21,21 @@ interface CarApiService {
 
 object CarApiObj {
     val retrofitService: CarApiService by lazy {
-        retrofit.create(CarApiService::class.java)
+        createRetrofit().create(CarApiService::class.java)
     }
+}
+
+fun createRetrofit(): Retrofit {
+    // this for debugging network calls
+    val builder = OkHttpClient.Builder()
+    if (BuildConfig.DEBUG) {
+        builder.addInterceptor( OkHttpProfilerInterceptor() )
+    }
+    val client = builder.build()
+
+    return Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(BASE_URL)
+        .client(client)
+        .build()
 }

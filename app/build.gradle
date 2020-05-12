@@ -63,7 +63,8 @@ dependencies {
     // we use converter-gson instead of moshi as mosh needs adapter for objects list that have date
     // property to work
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
+    // for debugging network calls
+    implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.4'
 
     // Glide for image loading from urls
     implementation "com.github.bumptech.glide:glide:4.11.0"
