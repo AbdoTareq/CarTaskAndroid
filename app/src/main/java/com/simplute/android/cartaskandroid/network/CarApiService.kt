@@ -11,7 +11,7 @@ import retrofit2.http.Query
 private const val BASE_URL = "http://demo1286023.mockable.io/api/v1/"
 
 private val httpLoggingInterceptor =
-    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
+    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
 private val okHttpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
 

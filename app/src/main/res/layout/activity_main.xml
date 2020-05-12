@@ -26,20 +26,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ticket_list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="0dp"
+            android:id="@+id/swipe_refresh"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/very_small_margin"
             android:layout_marginTop="@dimen/small_margin"
             android:layout_marginEnd="@dimen/very_small_margin"
-            app:carListData="@{viewModel.cars}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header"
-            tools:listitem="@layout/car_item" />
+            app:layout_constraintTop_toBottomOf="@+id/header">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ticket_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:carListData="@{viewModel.cars}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/car_item" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <ImageView
             android:id="@+id/status_image"

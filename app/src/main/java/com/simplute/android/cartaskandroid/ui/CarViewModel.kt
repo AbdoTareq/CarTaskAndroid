@@ -19,7 +19,7 @@ enum class ApiStatus { LOADING, ERROR, DONE, EMPTY }
  */
 class CarViewModel(application: Application) : AndroidViewModel(application) {
 
-    private  val pageNum = 1
+    private var pageNum: Int = 1
 
     private val repo = CarRepository()
     private val applicationCon = application
@@ -38,24 +38,32 @@ class CarViewModel(application: Application) : AndroidViewModel(application) {
         _status.value = ApiStatus.LOADING
         obj = object : CarInterface {
             override fun onSuccess(carList: List<Car>) {
-                _status.value = ApiStatus.DONE
+                if (carList.isEmpty())
+                    _status.value = ApiStatus.EMPTY
+                else
+                    _status.value = ApiStatus.DONE
                 _cars.value = carList
             }
 
             override fun onFail(responseCode: String) {
                 _status.value = ApiStatus.ERROR
                 _cars.value = ArrayList()
-                Log.e("error",getErrorMess(responseCode))
+                Log.e("error", getErrorMess(responseCode))
                 Timber.e(getErrorMess(responseCode))
             }
 
         }
 
-        getTickets()
+        getList()
     }
 
-    private fun getTickets() {
-        repo.getCarList(pageNum,obj)
+    private fun getList() {
+        repo.getCarList(pageNum, obj)
+    }
+
+    fun refreshList() {
+        pageNum++
+        repo.getCarList(pageNum, obj)
     }
 
     fun getErrorMess(code: String): String {

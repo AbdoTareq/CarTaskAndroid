@@ -27,7 +27,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
 
-        binding.ticketList.adapter = CarAdapter()
+        val adapter = CarAdapter()
+
+        binding.ticketList.adapter = adapter
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.refreshList()
+            adapter.notifyDataSetChanged()
+
+            // for refreshing icon to disappear
+            binding.swipeRefresh.isRefreshing = false
+
+        }
 
     }
 }
