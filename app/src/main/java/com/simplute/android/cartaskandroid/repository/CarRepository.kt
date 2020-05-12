@@ -22,7 +22,6 @@ class CarRepository {
         coroutineScope.launch {
             try {
                 val carList = CarApiObj.retrofitService.getCarList(id).data
-                Timber.e("$carList")
                 carInterface.onSuccess(carList!!)
             } catch (e: HttpException) {
                 Timber.e("${e.code()}")

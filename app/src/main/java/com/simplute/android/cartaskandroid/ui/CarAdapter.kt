@@ -22,15 +22,11 @@ class CarAdapter : ListAdapter<Car,
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: CarItemBinding) :
+    class ViewHolder private constructor(private val binding: CarItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Car) {
-            binding.id.text = item.id.toString()
-            binding.brand.text = item.brand
-            binding.year.text = item.constructionYear
-            binding.used.text = item.isUsed.toString()
-
+            binding.item = item
             binding.executePendingBindings()
         }
 
@@ -50,6 +46,6 @@ private class CarDiffCallback : DiffUtil.ItemCallback<Car>() {
     }
 
     override fun areContentsTheSame(oldItem: Car, newItem: Car): Boolean {
-        return oldItem.equals(newItem)
+        return oldItem == newItem
     }
 }
